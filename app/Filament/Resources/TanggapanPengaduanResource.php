@@ -3,9 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TanggapanPengaduanResource\Pages;
-use App\Filament\Resources\TanggapanPengaduanResource\RelationManagers;
 use App\Models\TanggapanPengaduan;
-use Filament\Forms;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -15,7 +13,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TanggapanPengaduanResource extends Resource
 {
@@ -104,11 +101,11 @@ class TanggapanPengaduanResource extends Resource
                     ->helperText('Status ini akan diperbarui pada pengaduan terkait setelah tanggapan disimpan.'),
 
                 Hidden::make('pengaduan_id')
-                    ->default(fn() => request()->query('pengaduan_id'))
+                    ->default(fn () => request()->query('pengaduan_id'))
                     ->required(),
 
                 Hidden::make('kategori_id')
-                    ->default(fn() => request()->query('kategori_id'))
+                    ->default(fn () => request()->query('kategori_id'))
                     ->required(),
 
             ])->columns(2);

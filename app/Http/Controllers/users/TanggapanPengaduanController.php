@@ -4,7 +4,6 @@ namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
 use App\Models\TanggapanPengaduan;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TanggapanPengaduanController extends Controller

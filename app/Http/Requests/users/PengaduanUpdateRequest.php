@@ -24,19 +24,19 @@ class PengaduanUpdateRequest extends FormRequest
         return [
             'kategori_id' => [
                 'required',
-                'exists:category_reports,id'
+                'exists:category_reports,id',
             ],
             'judul' => [
                 'required',
                 'string',
-                'max:255'
+                'max:255',
             ],
             'isi_pengaduan' => [
                 'required',
                 'string',
-                'max:1000'
+                'max:1000',
             ],
-            
+
         ];
     }
 }

@@ -7,7 +7,6 @@ use App\Http\Requests\users\PengaduanStoreRequest;
 use App\Http\Requests\users\PengaduanUpdateRequest;
 use App\Models\CategoryReport;
 use App\Models\Pengaduan;
-use Illuminate\Http\Request;
 
 class PengaduanController extends Controller
 {
@@ -20,14 +19,17 @@ class PengaduanController extends Controller
             ->where('user_id', auth()->user()->id)
             ->latest()
             ->get();
+
         return view('users.pengaduan.index', compact('pengaduans'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {
+    public function create()
+    {
         $pengaduans = CategoryReport::all();
+
         return view('users.pengaduan.create', compact('pengaduans'));
     }
 
@@ -37,7 +39,7 @@ class PengaduanController extends Controller
     public function store(PengaduanStoreRequest $request)
     {
         // dd($request->all());
-        $pengaduan = new Pengaduan();
+        $pengaduan = new Pengaduan;
         $pengaduan->user_id = auth()->user()->id;
         $pengaduan->kategori_id = $request->kategori_id;
         $pengaduan->judul = $request->judul;
@@ -62,6 +64,7 @@ class PengaduanController extends Controller
     public function edit(Pengaduan $pengaduan)
     {
         $pengaduans = CategoryReport::all();
+
         return view('users.pengaduan.edit', compact('pengaduan', 'pengaduans'));
     }
 
@@ -96,6 +99,7 @@ class PengaduanController extends Controller
         //     return redirect()->route('pengaduan.index')->with('error', 'Pengaduan tidak dapat dihapus karena sudah ditolak.');
         // }
         $pengaduan->delete();
+
         return redirect()->route('pengaduan.index')->with('success', 'Pengaduan berhasil dihapus.');
     }
 }

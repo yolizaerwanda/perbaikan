@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('pengaduans', function (Blueprint $table) {
             $table->id();
 
-            //tambahkan kolom foreign dulu
+            // tambahkan kolom foreign dulu
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('kategori_id');
 
-
-            //referensi dari table lain
+            // referensi dari table lain
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('kategori_id')->references('id')->on('category_reports');
 

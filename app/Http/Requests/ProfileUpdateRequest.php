@@ -19,7 +19,7 @@ class ProfileUpdateRequest extends FormRequest
             'name' => [
                 // 'required',
                 'string',
-                'max:255'
+                'max:255',
             ],
             'email' => [
                 // 'required',
@@ -32,12 +32,12 @@ class ProfileUpdateRequest extends FormRequest
             'alamat' => [
                 'required',
                 'string',
-                'max:255'
+                'max:255',
             ],
             'no_hp' => [
                 'required',
                 'string',
-                'max:15'
+                'max:15',
             ],
         ];
     }

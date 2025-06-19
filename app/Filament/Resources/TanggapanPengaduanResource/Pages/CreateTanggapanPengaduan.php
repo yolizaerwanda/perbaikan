@@ -4,19 +4,17 @@ namespace App\Filament\Resources\TanggapanPengaduanResource\Pages;
 
 use App\Filament\Resources\TanggapanPengaduanResource;
 use App\Models\Pengaduan;
-use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Auth;
-
 
 class CreateTanggapanPengaduan extends CreateRecord
 {
     protected static string $resource = TanggapanPengaduanResource::class;
 
     public $pengaduan_id;
-    public $statusPengaduan;
 
+    public $statusPengaduan;
 
     public function mount(): void
     {
@@ -29,7 +27,7 @@ class CreateTanggapanPengaduan extends CreateRecord
         logger('URL Parameters received:', [
             'pengaduan_id' => $pengaduan_id,
             'kategori_id' => $kategori_id,
-            'full_url' => request()->fullUrl()
+            'full_url' => request()->fullUrl(),
         ]);
 
         if ($pengaduan_id) {
@@ -52,7 +50,6 @@ class CreateTanggapanPengaduan extends CreateRecord
             }
         }
     }
-
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
@@ -84,7 +81,7 @@ class CreateTanggapanPengaduan extends CreateRecord
 
             logger('Status pengaduan updated:', [
                 'pengaduan_id' => $this->record->pengaduan_id,
-                'new_status' => $this->statusPengaduan
+                'new_status' => $this->statusPengaduan,
             ]);
         }
     }
@@ -96,7 +93,6 @@ class CreateTanggapanPengaduan extends CreateRecord
             ->title('Tanggapan Pengaduan Dibuat')
             ->body('Tanggapan pengaduan baru telah berhasil dibuat.');
     }
-
 
     protected function getRedirectUrl(): string
     {

@@ -18,6 +18,7 @@ class CekLevel
         if ($request->user() && $request->user()->role != 'admin') {
             return redirect('/dashboard/user')->with('error', 'You do not have admin access.');
         }
+
         return $next($request);
     }
 }

@@ -14,18 +14,17 @@ return new class extends Migration
         Schema::create('tanggapan_pengaduans', function (Blueprint $table) {
             $table->id();
 
-            //tambahkan field untuk impor dari tabel pengaduan
+            // tambahkan field untuk impor dari tabel pengaduan
             $table->unsignedBigInteger('pengaduan_id');
             $table->unsignedBigInteger('kategori_id');
             $table->unsignedBigInteger('user_id')->nullable();
 
-            //impor dari tabel lain
+            // impor dari tabel lain
             $table->foreign('pengaduan_id')->references('id')->on('pengaduans')->onDelete('cascade');
             $table->foreign('kategori_id')->references('id')->on('category_reports')->onDelete('cascade');
 
             // referensi ke tabel users, jika user dihapus, set null
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-
 
             // isi tabel
             $table->string('isi_tanggapan');

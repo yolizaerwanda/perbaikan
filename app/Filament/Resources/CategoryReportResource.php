@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryReportResource\Pages;
-use App\Filament\Resources\CategoryReportResource\RelationManagers;
 use App\Models\CategoryReport;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -12,8 +11,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CategoryReportResource extends Resource
 {
@@ -102,7 +99,7 @@ class CategoryReportResource extends Resource
                         ->color('danger')
                         ->requiresConfirmation()
                         ->successNotificationTitle('Kategori berhasil dihapus.'),
-                ])->label('Aksi')
+                ])->label('Aksi'),
             ])
             ->bulkActions([
                 BulkAction::make('editKategori')
@@ -115,7 +112,7 @@ class CategoryReportResource extends Resource
                             ->label('Deskripsi')
                             ->required(),
                     ])
-                    ->action(function (array $data,     $records) {
+                    ->action(function (array $data, $records) {
                         foreach ($records as $record) {
                             $record->update([
                                 'namaKategori' => $data['namaKategori'],
@@ -129,8 +126,8 @@ class CategoryReportResource extends Resource
 
                 BulkAction::make('delete')
                     ->requiresConfirmation()
-                    ->action(fn($records) => $records->each->delete())
-                    ->icon('heroicon-o-trash')
+                    ->action(fn ($records) => $records->each->delete())
+                    ->icon('heroicon-o-trash'),
             ]);
     }
 

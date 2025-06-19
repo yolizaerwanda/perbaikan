@@ -14,7 +14,7 @@ class EditTanggapanPengaduan extends EditRecord
 
     public $statusPengaduan;
 
-    public function mount(int | string $record): void
+    public function mount(int|string $record): void
     {
         parent::mount($record);
 
@@ -84,7 +84,7 @@ class EditTanggapanPengaduan extends EditRecord
 
             logger('Status pengaduan updated on edit:', [
                 'pengaduan_id' => $this->record->pengaduan_id,
-                'new_status' => $this->statusPengaduan
+                'new_status' => $this->statusPengaduan,
             ]);
         }
     }

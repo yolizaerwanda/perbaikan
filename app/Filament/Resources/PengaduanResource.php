@@ -3,20 +3,16 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PengaduanResource\Pages;
-use App\Filament\Resources\PengaduanResource\RelationManagers;
 use App\Models\Pengaduan;
-use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use FIlament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use FIlament\Tables\Actions\Action;
-use Filament\Forms\Components\Placeholder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PengaduanResource extends Resource
 {
@@ -85,7 +81,7 @@ class PengaduanResource extends Resource
                         'selesai' => 'Selesai',
                         'ditolak' => 'Ditolak',
                     ])
-                    ->required()
+                    ->required(),
             ])->columns(2);
     }
 
@@ -120,7 +116,7 @@ class PengaduanResource extends Resource
                 TextColumn::make('isi_pengaduan')
                     ->label('Isi Pengaduan')
                     ->sortable()
-                    ->tooltip(fn($state) => $state)
+                    ->tooltip(fn ($state) => $state)
                     ->searchable()
                     ->wrap(),
                 TextColumn::make('status')
@@ -155,8 +151,7 @@ class PengaduanResource extends Resource
                     ->label('Respon')
                     ->icon('heroicon-o-chat-bubble-left-right')
                     ->url(
-                        fn($record) =>
-                        TanggapanPengaduanResource::getUrl('create', [
+                        fn ($record) => TanggapanPengaduanResource::getUrl('create', [
                             'pengaduan_id' => $record->id,
                             'kategori_id' => $record->kategori_id,
                         ])
